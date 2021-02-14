@@ -6,6 +6,7 @@ The sole purpose of this immutable record is to simply act as a class factory fo
 
 ```bash
 npm install simple-immutable-record
+yarn add simple-immutable-record
 ```
 
 # Usage
