@@ -91,11 +91,13 @@ describe('ImmutableRecord', () => {
         class TestClassWithProcessor extends ImmutableRecord(
             { data: defaultValues as TestDataInterface | undefined },
             values => {
-                if (!(values.data instanceof TestClass)) {
-                    values.data = new TestClass(values.data);
+                let { data } = values;
+
+                if (!(data instanceof TestClass)) {
+                    data = new TestClass(data);
                 }
 
-                return values;
+                return { ...values, data };
             }
         ) {}
 
