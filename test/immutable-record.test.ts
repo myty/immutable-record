@@ -86,4 +86,49 @@ describe('ImmutableRecord', () => {
             expect(newValue.testString).toEqual(testString);
         });
     });
+
+    describe('processor', () => {
+        class TestClassWithProcessor extends ImmutableRecord(
+            { data: defaultValues as TestDataInterface | undefined },
+            values => {
+                if (!(values.data instanceof TestClass)) {
+                    values.data = new TestClass(values.data);
+                }
+
+                return values;
+            }
+        ) {}
+
+        it('processes', () => {
+            // Arrange
+            const testNumber = 3;
+            const testString = 'test-string';
+
+            // Act
+            const newValue = new TestClassWithProcessor({
+                data: { testNumber, testString },
+            });
+
+            // Assert
+            expect(newValue.data?.testNumber).toEqual(testNumber);
+            expect(newValue.data?.testString).toEqual(testString);
+            expect(newValue.data instanceof TestClass).toEqual(true);
+        });
+
+        it('processes when with is called', () => {
+            // Arrange
+            const testNumber = 3;
+            const testString = 'test-string';
+
+            // Act
+            const newValue = new TestClassWithProcessor().with({
+                data: { testNumber, testString },
+            });
+
+            // Assert
+            expect(newValue.data?.testNumber).toEqual(testNumber);
+            expect(newValue.data?.testString).toEqual(testString);
+            expect(newValue.data instanceof TestClass).toEqual(true);
+        });
+    });
 });
