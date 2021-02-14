@@ -1,5 +1,5 @@
 {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -35,14 +35,14 @@
     },
     "name": "simple-immutable-record",
     "author": "Michael Tyson",
-    "module": "dist/immutable-record.esm.js",
+    "module": "dist/simple-immutable-record.esm.js",
     "size-limit": [
         {
-            "path": "dist/immutable-record.cjs.production.min.js",
+            "path": "dist/simple-immutable-record.cjs.production.min.js",
             "limit": "10 KB"
         },
         {
-            "path": "dist/immutable-record.esm.js",
+            "path": "dist/simple-immutable-record.esm.js",
             "limit": "10 KB"
         }
     ],
