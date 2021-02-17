@@ -1,24 +1,24 @@
 import produce, { Draft, immerable, Immutable } from 'immer';
 
 export interface ImmutableWith<T> {
-    with: (values: Partial<T>) => this;
+    with: (values: Partial<Immutable<T>>) => this;
 }
 
-export type ImmutableConstructor<T> = new (value?: Partial<T>) => Immutable<T> &
-    ImmutableWith<T>;
-
-export type ImmutablePartial<T> = Partial<T | Immutable<T>>;
+export type ImmutableConstructor<T> = new (
+    value?: Partial<Immutable<T>>
+) => Immutable<T> & ImmutableWith<T>;
 
 export function ImmutableRecord<T>(
     defaultValues: T | Immutable<T>,
-    processor?: (values: ImmutablePartial<T>) => Partial<T>
+    processor?: (values: Partial<Immutable<T>>) => Partial<Immutable<T>>
 ) {
-    const classProcessor = processor ?? ((value: ImmutablePartial<T>) => value);
+    const classProcessor =
+        processor ?? ((value: Partial<Immutable<T>>) => value);
 
     class ImmutableRecordClass implements ImmutableWith<T> {
         [immerable] = true;
 
-        constructor(values: ImmutablePartial<T> = {}) {
+        constructor(values: Partial<Immutable<T>> = {}) {
             Object.assign(
                 this,
                 classProcessor({
@@ -33,7 +33,7 @@ export function ImmutableRecord<T>(
         /**
          * Returns a new object with updated values
          */
-        with(values: ImmutablePartial<T>): this {
+        with(values: Partial<Immutable<T>>): this {
             return produce(this, (prev: Draft<T>) => {
                 values = classProcessor(values);
 

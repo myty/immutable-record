@@ -87,6 +87,57 @@ describe('ImmutableRecord', () => {
         });
     });
 
+    describe('defaultNestedClasses', () => {
+        interface TestParentClassInterface {
+            data: TestDataInterface;
+        }
+
+        class TestParentClass extends ImmutableRecord<TestParentClassInterface>(
+            { data: new TestClass() },
+            values => {
+                let { data } = values;
+
+                if (!(data instanceof TestClass)) {
+                    data = new TestClass(data);
+                }
+
+                return { ...values, data };
+            }
+        ) {}
+
+        it('processes', () => {
+            // Arrange
+            const testNumber = 3;
+            const testString = 'test-string';
+
+            // Act
+            const newValue = new TestParentClass({
+                data: { testNumber, testString },
+            });
+
+            // Assert
+            expect(newValue.data?.testNumber).toEqual(testNumber);
+            expect(newValue.data?.testString).toEqual(testString);
+            expect(newValue.data instanceof TestClass).toEqual(true);
+        });
+
+        it('processes when with is called', () => {
+            // Arrange
+            const testNumber = 3;
+            const testString = 'test-string';
+
+            // Act
+            const newValue = new TestParentClass().with({
+                data: { testNumber, testString },
+            });
+
+            // Assert
+            expect(newValue.data?.testNumber).toEqual(testNumber);
+            expect(newValue.data?.testString).toEqual(testString);
+            expect(newValue.data instanceof TestClass).toEqual(true);
+        });
+    });
+
     describe('processor', () => {
         class TestClassWithProcessor extends ImmutableRecord(
             { data: defaultValues as TestDataInterface | undefined },
