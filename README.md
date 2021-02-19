@@ -6,6 +6,11 @@ The sole purpose of this immutable record is to simply act as a class factory fo
 
 ```bash
 npm install simple-immutable-record
+```
+
+or
+
+```bash
 yarn add simple-immutable-record
 ```
 
@@ -34,4 +39,34 @@ const value = new TestClass();
 
 const newValue = value.with({ testNumber: 2, optionalString: 'test-optional' });
 // { testNumber: 2, testString: 'test', optionalString: 'test-optional' }
+```
+
+Processing Nested Classes
+```typescript
+interface TestParentClassInterface {
+    data: TestDataInterface;
+}
+
+class TestParentClass extends ImmutableRecord<TestParentClassInterface>(
+    { data: new TestClass() },
+    values => {
+        let { data } = values;
+
+        if (!(data instanceof TestClass)) {
+            data = new TestClass(data);
+        }
+
+        return { ...values, data };
+    }
+) {}
+
+const value = new TestParentClass({
+    data: { testNumber, testString },
+});
+// value.data instanceof TestClass === true
+
+const value = new TestParentClass().with({
+    data: { testNumber, testString },
+});
+// value.data instanceof TestClass === true
 ```
