@@ -1,5 +1,4 @@
-import {
-  default as produce,
+import produce, {
   enableMapSet,
   immerable,
   Immutable,

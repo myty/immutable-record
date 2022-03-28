@@ -10,6 +10,20 @@
 
 import { build, emptyDir } from "https://deno.land/x/dnt@0.21.0/mod.ts";
 
+function getVersion() {
+  if (Deno.args.length < 1) {
+    return "0.0.0";
+  }
+
+  const arg1 = Deno.args[0];
+
+  if (!arg1.startsWith("refs/tags/v")) {
+    return "0.0.0";
+  }
+
+  return arg1.substring("refs/tags/v".length);
+}
+
 async function start() {
   await emptyDir("./npm");
 
@@ -18,7 +32,6 @@ async function start() {
     outDir: "./npm",
     shims: {
       deno: true,
-      timers: true,
     },
     test: true,
     compilerOptions: {
@@ -27,7 +40,7 @@ async function start() {
     },
     package: {
       name: "simple-immutable-record",
-      version: Deno.args[0].substring("refs/tags/v".length),
+      version: getVersion(),
       description:
         "The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a with method to the record class.",
       license: "MIT",
