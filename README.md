@@ -2,7 +2,7 @@
 
 The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a `with` method to the record class.
 
-# Installation
+## Installation
 
 ```bash
 npm install simple-immutable-record
@@ -14,7 +14,7 @@ or
 yarn add simple-immutable-record
 ```
 
-# Usage
+## Usage
 
 ```typescript
 interface TestDataInterface {
