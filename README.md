@@ -2,15 +2,25 @@
 
 The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a `with` method to the record class.
 
-## Installation
+## Deno
 
-```bash
+```typescript
+import {
+  ImmutableConstructor,
+  ImmutableRecord,
+  ImmutableWith,
+} from "https://deno.land/x/simple-immutable-record/mod.ts";
+```
+
+## Node
+
+```sh
 npm install simple-immutable-record
 ```
 
 or
 
-```bash
+```sh
 yarn add simple-immutable-record
 ```
 
@@ -41,7 +51,7 @@ const newValue = value.with({ testNumber: 2, optionalString: "test-optional" });
 // { testNumber: 2, testString: 'test', optionalString: 'test-optional' }
 ```
 
-Processing Nested Classes
+### Processing Nested Classes
 
 ```typescript
 interface TestParentClassInterface {
