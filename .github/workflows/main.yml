@@ -2,31 +2,24 @@ name: CI
 on: [push]
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+    name: Build, lint, and test on Deno
 
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: ['10.x', '12.x', '14.x']
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Use Latest Version of Deno
+        uses: denoland/setup-deno@v1.0.0
         with:
-          node-version: ${{ matrix.node }}
+          deno-version: v1.x
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Deno Format
+        run: deno fmt --check
 
-      - name: Lint
-        run: yarn lint
+      - name: Deno Lint
+        run: deno lint
 
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
-
-      - name: Build
-        run: yarn build
+      - name: Deno Test
+        run: deno test
