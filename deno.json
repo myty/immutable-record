@@ -2,15 +2,17 @@
   "name": "@myty/immutable-record",
   "description": "The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a with method to the record class.",
   "exports": "./mod.ts",
-  "compilerOptions": {
-    "allowJs": false,
-    "strict": true
-  },
   "lint": {
     "rules": {
-      "tags": ["recommended"],
-      "include": ["ban-untagged-todo"],
-      "exclude": ["no-unused-vars"]
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ],
+      "exclude": [
+        "no-unused-vars"
+      ]
     }
   },
   "fmt": {

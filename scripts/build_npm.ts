@@ -20,8 +20,10 @@ async function start() {
       deno: true,
       timers: true,
     },
+    importMap: "deno.json",
     test: true,
     compilerOptions: {
+      lib: ["ESNext"],
       importHelpers: true,
       target: "ES2021",
     },
@@ -43,12 +45,6 @@ async function start() {
         url: "https://github.com/myty/immutable-record/issues",
       },
       homepage: "https://github.com/myty/immutable-record#readme",
-      dependencies: {
-        "tslib": "~2.3.1",
-      },
-      devDependencies: {
-        "@types/node": "^20",
-      },
     },
   });
 
