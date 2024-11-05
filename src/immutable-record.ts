@@ -13,7 +13,7 @@ export type ImmutableConstructor<T> = new (
 export function ImmutableRecord<T>(
   defaultValues: T | Immutable<T>,
   processor?: (values: Partial<Immutable<T>>) => Partial<Immutable<T>>,
-) {
+): ImmutableConstructor<T> {
   const classProcessor = processor ?? ((value: Partial<Immutable<T>>) => value);
 
   class ImmutableRecordClass implements ImmutableWith<T> {
