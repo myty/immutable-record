@@ -1,9 +1,4 @@
-import {
-  default as produce,
-  enableMapSet,
-  immerable,
-  Immutable,
-} from "https://cdn.skypack.dev/immer@9.0.12?dts";
+import { enableMapSet, immerable, Immutable, produce } from "immer";
 
 enableMapSet();
 
@@ -49,6 +44,7 @@ export function ImmutableRecord<T>(
             (prev as any)[key] = (values as any)[key];
           }
         });
+        ``;
       });
     }
   }

@@ -1,17 +1,10 @@
 {
+  "editor.rulers": [100],
+  "typescript.suggest.autoImports": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.paths": true,
   "deno.enable": true,
-  "deno.suggest.autoImports": true,
-  "deno.suggest.completeFunctionCalls": true,
-  "deno.suggest.imports.autoDiscover": true,
-  "deno.suggest.names": true,
-  "deno.suggest.paths": true,
-  "deno.suggest.imports.hosts": {
-    "https://deno.land": true,
-    "https://x.nest.land": true,
-    "https://crux.land": true
-  },
   "deno.lint": true,
-  "deno.unstable": true,
   "prettier.enable": false,
   "[jsonc]": {
     "editor.formatOnSave": true,

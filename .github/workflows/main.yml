@@ -8,12 +8,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Latest Version of Deno
-        uses: denoland/setup-deno@v1.0.0
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: Deno Format
         run: deno fmt --check

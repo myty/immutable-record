@@ -1,9 +1,5 @@
 import { ImmutableRecord } from "../mod.ts";
-import {
-  assert,
-  assertEquals,
-  assertNotEquals,
-} from "https://deno.land/std@0.132.0/testing/asserts.ts";
+import { assert, assertEquals, assertNotEquals } from "@std/assert";
 
 interface TestDataInterface {
   testNumber: number;
@@ -147,13 +143,13 @@ Deno.test("ImmutableRecord", async (t) => {
     class TestClassWithProcessor extends ImmutableRecord(
       { data: defaultValues as TestDataInterface | undefined },
       (values) => {
-        let { data } = values;
+        let { data, ...rest } = values;
 
         if (!(data instanceof TestClass)) {
           data = new TestClass(data);
         }
 
-        return { ...values, data };
+        return { ...rest, data };
       },
     ) {}
 

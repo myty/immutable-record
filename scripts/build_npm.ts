@@ -8,7 +8,7 @@
  * @module
  */
 
-import { build, emptyDir } from "https://deno.land/x/dnt@0.21.0/mod.ts";
+import { build, emptyDir } from "@deno/dnt";
 
 async function start() {
   await emptyDir("./npm");
@@ -26,14 +26,14 @@ async function start() {
       target: "ES2021",
     },
     package: {
-      name: "simple-immutable-record",
+      name: "@myty/immutable-record",
       version: Deno.args[0].substring("refs/tags/v".length),
       description:
         "The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a with method to the record class.",
       license: "MIT",
       author: "Michael Tyson",
       engines: {
-        node: ">=16.5.0 <18",
+        node: ">=20",
       },
       repository: {
         type: "git",
@@ -47,7 +47,7 @@ async function start() {
         "tslib": "~2.3.1",
       },
       devDependencies: {
-        "@types/node": "^16",
+        "@types/node": "^20",
       },
     },
   });
