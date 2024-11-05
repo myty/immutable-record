@@ -30,8 +30,7 @@ async function start() {
     package: {
       name: "@myty/immutable-record",
       version: Deno.args[0].substring("refs/tags/v".length),
-      description:
-        "The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a with method to the record class.",
+      description: "Built on immer, immutable recorda are class factories for immutable types.",
       license: "MIT",
       author: "Michael Tyson",
       engines: {

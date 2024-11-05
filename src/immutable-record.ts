@@ -2,20 +2,37 @@ import { enableMapSet, immerable, Immutable, produce } from "immer";
 
 enableMapSet();
 
+/**
+ * immutable record interface
+ */
 export interface ImmutableWith<T> {
+  /**
+   * Returns a new object if values changed
+   */
   with: (values: Partial<Immutable<T>>) => this;
 }
 
+/**
+ * Represents a constructor for an immutable object
+ */
 export type ImmutableConstructor<T> = new (
   value?: Partial<Immutable<T>>,
 ) => Immutable<T> & ImmutableWith<T>;
 
+/**
+ * Class factory to create an immutable record
+ * @param defaultValues Default values
+ * @param processor Processor for values
+ */
 export function ImmutableRecord<T>(
   defaultValues: T | Immutable<T>,
   processor?: (values: Partial<Immutable<T>>) => Partial<Immutable<T>>,
 ): ImmutableConstructor<T> {
   const classProcessor = processor ?? ((value: Partial<Immutable<T>>) => value);
 
+  /**
+   * Immutable record class
+   */
   class ImmutableRecordClass implements ImmutableWith<T> {
     [immerable] = true;
 
@@ -44,7 +61,6 @@ export function ImmutableRecord<T>(
             (prev as any)[key] = (values as any)[key];
           }
         });
-        ``;
       });
     }
   }

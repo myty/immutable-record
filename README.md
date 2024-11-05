@@ -1,32 +1,24 @@
 # Introduction
 
-The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a `with` method to the record class.
+Built on `immer`, immutable recorda are class factories for immutable types.
 
 ## Deno
 
-```typescript
-import {
-  ImmutableConstructor,
-  ImmutableRecord,
-  ImmutableWith,
-} from "https://deno.land/x/simple-immutable-record/mod.ts";
+```sh
+deno add jsr:@myty/immutable-record
 ```
 
 ## Node
 
 ```sh
-npm install simple-immutable-record
-```
-
-or
-
-```sh
-yarn add simple-immutable-record
+npm install @myty/immutable-record
 ```
 
 ## Usage
 
 ```typescript
+import { ImmutableConstructor, ImmutableRecord, ImmutableWith } from "@myty/immutable-record";
+
 interface TestDataInterface {
   testNumber: number;
   testString: string;

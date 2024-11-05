@@ -1,6 +1,6 @@
 {
   "name": "@myty/immutable-record",
-  "description": "The sole purpose of this immutable record is to simply act as a class factory for immutable types. For this particular implementation, it piggybacks off of immer and adds a with method to the record class.",
+  "description": "Built on immer, immutable recorda are class factories for immutable types.",
   "exports": "./mod.ts",
   "lint": {
     "rules": {
